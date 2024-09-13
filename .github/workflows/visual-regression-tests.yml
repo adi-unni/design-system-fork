@@ -7,7 +7,7 @@ env:
 
 jobs:
     run-visual-regression-tests:
-        runs-on: macos-13
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -16,6 +16,10 @@ jobs:
                   lfs: true
             - name: Install dependencies
               run: yarn install
+
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
 
             - name: Run visual regression tests
               id: vr
