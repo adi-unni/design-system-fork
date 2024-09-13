@@ -7,23 +7,20 @@ env:
 
 jobs:
     run-visual-regression-tests:
-        runs-on: macos-12
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
               uses: actions/checkout@v4
               with:
                   lfs: true
-            - name: Install Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: '.nvmrc'
             - name: Install dependencies
               run: yarn install
-            - name: Install Docker
-              run: |
-                  brew install docker
-                  colima start
+
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
+
             - name: Run visual regression tests
               id: vr
               run: yarn test-visual
