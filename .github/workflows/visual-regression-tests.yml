@@ -20,10 +20,6 @@ jobs:
                   node-version-file: '.nvmrc'
             - name: Install dependencies
               run: yarn install
-            - name: Install Docker
-              run: |
-                  brew install docker
-                  colima start
             - name: Run visual regression tests
               id: vr
               run: yarn test-visual
